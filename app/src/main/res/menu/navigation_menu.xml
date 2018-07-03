@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--single表示所有菜单项只能单选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/location"
+            android:icon="@drawable/icon_locate"
+            android:title="我的位置"/>
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/icon_camera"
+            android:title="相机"/>
+        <item
+            android:id="@+id/nav_scan"
+            android:icon="@drawable/news_scan"
+            android:title="扫一扫"/>
+        <item
+            android:id="@+id/nav_shopping"
+            android:icon="@drawable/news_shopping"
+            android:title="购物"/>
+        <item
+            android:id="@+id/nav_shake"
+            android:icon="@drawable/news_shake"
+            android:title="摇一摇"/>
+    </group>
+    <item
+        android:title="天气">
+    <menu
+        android:id="@+id/group2">
+        <item
+            android:id="@+id/nav_weather"
+            android:title="晴"/>
+    </menu>
+    </item>
+    <group
+        android:id="@+id/group3">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="系统设置"
+            android:icon="@drawable/icon_setting"/>
+        <item
+            android:id="@+id/exit"
+            android:title="退出"
+            android:icon="@drawable/icon_exit"/>
+    </group>
+</menu>
