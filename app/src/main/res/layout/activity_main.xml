@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.zjc.news.view.activity.MainActivity">
+    tools:context="com.zjc.news.module.news.view.activity.MainActivity">
 
     <!--CoordinatorLayout是一个加强版的Framelayout替换不会影响-->
     <android.support.design.widget.CoordinatorLayout

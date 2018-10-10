@@ -79,6 +79,11 @@ public class NewsBean {
             public void setThumbnail_pic_s02(String thumbnail_pic_s02) {
                 this.thumbnail_pic_s02 = thumbnail_pic_s02;
             }
+
+            @Override
+            public String toString() {
+                return "Data{" + "title='" + title + '\'' + ", date='" + date + '\'' + ", category='" + category + '\'' + ", author_name='" + author_name + '\'' + ", url='" + url + '\'' + ", thumbnail_pic_s='" + thumbnail_pic_s + '\'' + ", thumbnail_pic_s02='" + thumbnail_pic_s02 + '\'' + '}';
+            }
         }
     }
 }

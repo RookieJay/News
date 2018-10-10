@@ -12,7 +12,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.zjc.news.R;
 import com.zjc.news.model.NewsBean;
-import com.zjc.news.view.adapter.NewsAdapter;
+import com.zjc.news.module.news.view.adapter.NewsAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class FragmentNetUtils {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Log.d("parseData>>>当前线程", Thread.currentThread().getName());
+                Log.d("showResponse>>>当前线程", Thread.currentThread().getName());
                 Log.i(TAG, "加载到showResponse: datasize="+datas.size());
                 LinearLayoutManager manager = new LinearLayoutManager(context);
                 recyclerView.setLayoutManager(manager);

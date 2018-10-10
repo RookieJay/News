@@ -25,6 +25,10 @@ public class NetworkUtil {
         handler = new Handler(Looper.getMainLooper());
     }
 
+    public NetworkUtil(OkHttpClient okHttpClient, Handler handler) {
+        this.okHttpClient = okHttpClient;
+        this.handler = handler;
+    }
 
     /**
      * synchronized 关键字，代表这个方法加锁,

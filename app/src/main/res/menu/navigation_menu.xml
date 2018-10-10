@@ -39,6 +39,10 @@
             android:title="系统设置"
             android:icon="@drawable/icon_setting"/>
         <item
+            android:id="@+id/logout"
+            android:title="退出登录"
+            android:icon="@drawable/icon_exit"/>
+        <item
             android:id="@+id/exit"
             android:title="退出"
             android:icon="@drawable/icon_exit"/>
