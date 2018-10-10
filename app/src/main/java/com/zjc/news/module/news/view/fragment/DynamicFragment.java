@@ -1,8 +1,11 @@
 package com.zjc.news.module.news.view.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.zjc.news.R;
 import com.zjc.news.model.NewsBean;
@@ -27,21 +31,31 @@ import static com.zjc.news.module.news.view.adapter.MyFragmentPagerAdapter.POSIT
 public class DynamicFragment extends Fragment implements NewsContract.View{
 
     private static final String TAG = DynamicFragment.class.getSimpleName();
+    View mRootView;
+
     private NewsPresenter mPresenter;
     private RecyclerView mRecyclerView;
     private NewsAdapter adapter;
     private List<NewsBean.Result.Data> mData;
+    private TextView textView;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_base_news, container, false);
+        if (null != savedInstanceState) {
+            mRootView = (View) savedInstanceState.getBinder("root_view");
+            return mRootView;
+        }
+        mRootView = inflater.inflate(R.layout.fragment_base_news, container, false);
         String type = null;
         Bundle bundle = getArguments();
+        textView = mRootView.findViewById(R.id.base_text_view);
         if (null != bundle) {
             Log.d(TAG, String.valueOf(bundle.getInt(POSITION)));
+            textView.setText(bundle.get("title").toString());
         }
         int position = 0;
         switch (position) {
@@ -78,16 +92,23 @@ public class DynamicFragment extends Fragment implements NewsContract.View{
         }
         String url = "http://v.juhe.cn/toutiao/index?type="+type+"&key=e0852545993710eda928803afc4b9c1b";
 //        initData(url);
-        mRecyclerView = view.findViewById(R.id.base_recycler_view);
-        return view;
+        mRecyclerView = mRootView.findViewById(R.id.base_recycler_view);
+        return mRootView;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+    }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mRootView != null) {
+            outState.putBinder("root_view", (IBinder) mRootView);
+        }
     }
 
     private void initData(String url) {
@@ -110,5 +131,11 @@ public class DynamicFragment extends Fragment implements NewsContract.View{
             }
         });
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d(TAG, "onDestroyView: ");
     }
 }

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -147,7 +148,10 @@ public class LoginActivity extends BaseActivity {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     if (e instanceof SocketTimeoutException){
-                        Log.d(TAG, "登录超时");
+                        Log.d(TAG, "登录超时,请联系管理员");
+                        Looper.prepare();
+                        ToastUtil.showToast(LoginActivity.this, "登录超时");
+                        Looper.loop();
                     }
                     if (e instanceof ConnectException) {
                         Log.d(TAG, "连接异常，请检查网络");

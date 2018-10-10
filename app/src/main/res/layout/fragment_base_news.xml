@@ -6,4 +6,12 @@
         android:id="@+id/base_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/base_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:textSize="22sp"/>
 </RelativeLayout>

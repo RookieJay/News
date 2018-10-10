@@ -30,33 +30,23 @@ import com.zjc.news.model.User;
 import com.zjc.news.module.news.view.adapter.MyFragmentPagerAdapter;
 import com.zjc.news.utils.ToastUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout drawerLayout;
 
 //    private SwipeRefreshLayout swipeRefresh;    //下拉刷新
 
     private TabLayout tabLayout;
-
     private ViewPager viewPager;
-
     private MyFragmentPagerAdapter pagerAdapter;
-
-    private TabLayout.Tab one;
-    private TabLayout.Tab two;
-    private TabLayout.Tab three;
-    private TabLayout.Tab four;
-    private TabLayout.Tab five;
-    private TabLayout.Tab six;
-    private TabLayout.Tab seven;
-    private TabLayout.Tab eight;
-    private TabLayout.Tab nine;
-    private TabLayout.Tab ten;
-
+    private List<TabLayout.Tab> mTabs = new ArrayList<>();
     private CircleImageView circleImageView;
     private ImageView header_bg;
     private TextView username_txt;
@@ -90,27 +80,20 @@ public class MainActivity extends BaseActivity {
 
         //使用适配器将viewPager和fragment绑定在一起
         viewPager = findViewById(R.id.view_pager);
-        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(pagerAdapter);
 
+        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(pagerAdapter);
         //将tabLayout和viewPager绑定在一起
         tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-
         //指定Tab的位置
-        one = tabLayout.getTabAt(0);
-        two = tabLayout.getTabAt(1);
-        three = tabLayout.getTabAt(2);
-        four = tabLayout.getTabAt(3);
-        five = tabLayout.getTabAt(4);
-        six = tabLayout.getTabAt(5);
-        seven = tabLayout.getTabAt(6);
-        eight = tabLayout.getTabAt(7);
-        nine = tabLayout.getTabAt(8);
-        ten = tabLayout.getTabAt(9);
-
-        //设置Tab的图标
-//        one.setIcon(R.mipmap.ic_launcher);
+        int[] tabs = {0,1,2,3,4,5,6,7,8,9};
+        for (int i=0; i<tabs.length; i++) {
+            mTabs.add(tabLayout.getTabAt(i));
+            //设置Tab的图标
+//            mTabs.get(i).setIcon(R.mipmap.ic_launcher);
+        }
+        viewPager.setOffscreenPageLimit(mTabs.size());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -13,7 +13,7 @@ import com.zjc.news.R;
 
 public class SplashActivity extends BaseActivity {
 
-    private static final long DELAY_TIME = 3000L;
+    private static final long DELAY_TIME = 1000L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
